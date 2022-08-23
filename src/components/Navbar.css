@@ -1,0 +1,14 @@
+.navbar{
+    height:40px;
+    text-align:center;
+    background-image: linear-gradient(to right,black ,violet);
+}
+
+.navbar > h2{
+    display:inline;
+    font-family: 'Maven Pro', sans-serif;
+    
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');

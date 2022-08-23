@@ -1,0 +1,10 @@
+.App {
+  align-items: center;
+}
+body{
+  background: rgb(238,240,249);
+  background-image: linear-gradient(violet,black);
+ height:800px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap');
