@@ -17,7 +17,7 @@ function Home(){
           let airtoken=new ethers.Contract(airtokenAdd,Airtoken.abi,signer);
           let claim=await airtoken.claim(account);
           console.log(`Airtoken claimed by ${account} `);
-          let funds=await airtoken.balanceOf("0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
+          let funds=await airtoken.balanceOf(account);
           console.log(`Funds claimed by ${funds} `);
           let table=document.getElementById("tab");
           let newRow=table.insertRow(row);
