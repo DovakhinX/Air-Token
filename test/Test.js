@@ -1,5 +1,6 @@
 
 const {ethers} = require('hardhat');
+const {expect} = require('chai');
 const {MerkleTree} = require('merkletreejs');
 const keccak256 = require('keccak256');
 
@@ -27,16 +28,23 @@ describe('AirToken Trial', function() {
         const trialLeaf = keccak256(member2.address);
         const proof = tree.getHexProof(trialLeaf);
 
+        const funds = await airtoken.balanceOf(member2.address);
+        console.log(`AirToken balance of member ${funds}`);
+
         const claimToken = await airtoken.claim(member2.address, trialLeaf,
             proof);
         console.log(`Token claimed by ${member2.address}`);
 
-        const funds = await airtoken.balanceOf(member2.address);
-        console.log(`AirToken balance of member ${funds}`);
+        const funds2 = await airtoken.balanceOf(member2.address);
+        console.log(`AirToken balance of member ${funds2}`);   
+
+        await expect(airtoken.claim(member2.address, trialLeaf,
+            proof)).to.be.revertedWith('AirToken already claimed');
+        console.log('member has already claimed token');
 
         const mint = await airtoken.mint(owner.address, 10000);
         console.log('Additional tokens minted to owner');
-        const funds2 = await airtoken.balanceOf(owner.address);
-        console.log(`AirToken balance of owner ${funds2}`);
+        const funds3 = await airtoken.balanceOf(owner.address);
+        console.log(`AirToken balance of owner ${funds3}`);
       });
 });
