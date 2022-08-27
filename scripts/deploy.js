@@ -4,35 +4,16 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
-const hre = require("hardhat");
+const hre = require('hardhat');
 
 async function main() {
-
-
- 
-
-  const AirToken = await hre.ethers.getContractFactory("AirToken");
-  const airtoken = await AirToken.deploy();
+  const AirToken = await hre.ethers.getContractFactory('AirToken');
+  const airtoken = await AirToken.deploy(
+      '0x1d2c6d0de38c77d2a15f6d241121ec032404625e87566d8a742d3dc2f924263d',
+  );
 
   await airtoken.deployed();
   console.log(`AirToken is deployed to  ${airtoken.address}`);
- 
-  const addAddress=await airtoken.addWhiteListAddress("0x70997970C51812dc3A010C7d01b50e0d17dc79C8",2000);
-  console.log("White list address added");
-
-  const addAddress2=await airtoken.addWhiteListAddress("0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",4000);
-  console.log("White list address added");
-
-  //const claimToken=await airtoken.claim("0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
-  //console.log(`Token claimed`)
-
-  
-  //let funds=await airtoken.balanceOf("0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
-  //console.log(`Wallet fund ${funds}`);
-
-
-
-
 }
 
 // We recommend this pattern to be able to use async/await everywhere
